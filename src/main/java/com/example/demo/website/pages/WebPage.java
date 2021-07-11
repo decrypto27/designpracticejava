@@ -3,7 +3,7 @@ package com.example.demo.website.pages;
 import com.example.demo.db.IDbOps;
 import com.example.demo.utils.Logger;
 
-public class webpage extends  Page {
+public class WebPage extends  Page {
 
     public static final String HELLO = "Hello";
     public static final String WORLD = "World";
@@ -11,7 +11,7 @@ public class webpage extends  Page {
     public static final String INISDE_WEB_PAGE_PUT_DATA = "Inisde web page putData";
     public static final Logger logger = Logger.getInstance();
 
-    public webpage(IDbOps iDbOps) {
+    public WebPage(IDbOps iDbOps) {
         super(HELLO, WORLD, FOOTER, iDbOps);
     }
 

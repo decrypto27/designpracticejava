@@ -10,11 +10,11 @@ public class PageFactory {
         Page page = null;
         switch(pageType){
             case WEB:{
-                page = new webpage(iDbOps);
+                page = new WebPage(iDbOps);
                 break;
             }
             case CONTACT:{
-                page = new contactpage(iDbOps);
+                page = new ContactPage(iDbOps);
                 break;
             }
             default:{
