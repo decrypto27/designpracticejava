@@ -1,15 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.bridge.*;
-import com.example.demo.db.IDbOps;
-import com.example.demo.db.InmemoryRw;
-import com.example.demo.website.pages.Page;
-import com.example.demo.website.pages.PageFactory;
-import com.example.demo.website.pages.PageType;
+import com.example.demo.prototype.Cosmetic;
+import com.example.demo.prototype.Registry;
+import com.example.demo.prototype.Surgical;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import static com.example.demo.bridge.ShapeType.CIRCLE;
-import static com.example.demo.bridge.ShapeType.SQUARE;
 
 @SpringBootApplication
 public class JavaDesignPracticeApplication {
@@ -18,16 +12,26 @@ public class JavaDesignPracticeApplication {
     public static final String CONTACTTABLE = "contacttable";
 
     public static void main(String[] args) {
-        Color red = new Red();
-        Color blue = new Blue();
-        Shape redCircle = new Circle(red, CIRCLE, 10);
-        System.out.println(redCircle.getArea());
-        System.out.println(redCircle.getType());
 
-        Shape blueSquare = new Square(blue, SQUARE, 10);
-        System.out.println(blueSquare.getArea());
-        System.out.println(blueSquare.getType());
+        Registry registry = new Registry();
+        Cosmetic cosmetic = (Cosmetic) registry.createItem("cosmetic");
+        System.out.println(cosmetic.getName());
+        System.out.println(cosmetic);
 
+        Surgical surgical = (Surgical) registry.createItem("surgical");
+        System.out.println(surgical.getName());
+        System.out.println(surgical);
+        //===================================== Bridge =================================
+//        Color red = new Red();
+//        Color blue = new Blue();
+//        Shape redCircle = new Circle(red, CIRCLE, 10);
+//        System.out.println(redCircle.getArea());
+//        System.out.println(redCircle.getType());
+//
+//        Shape blueSquare = new Square(blue, SQUARE, 10);
+//        System.out.println(blueSquare.getArea());
+//        System.out.println(blueSquare.getType());
+        //===================================== Bridge =================================
 
 //        System.out.println("hello world");
 //        IDbOps iDbOps = new InmemoryRw();
