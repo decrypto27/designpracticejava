@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.decorator.*;
 import com.example.demo.prototype.Cosmetic;
 import com.example.demo.prototype.Registry;
 import com.example.demo.prototype.Surgical;
@@ -12,15 +13,23 @@ public class JavaDesignPracticeApplication {
     public static final String CONTACTTABLE = "contacttable";
 
     public static void main(String[] args) {
+        Coffee coffee = new WhippedCreamDecorator(new ChocoChipDecorator(new MochaCofee()));
+        System.out.println(coffee.getName());
+        System.out.println(coffee.getPrice());
 
-        Registry registry = new Registry();
-        Cosmetic cosmetic = (Cosmetic) registry.createItem("cosmetic");
-        System.out.println(cosmetic.getName());
-        System.out.println(cosmetic);
+        Coffee doublewobble = new ChocoChipDecorator(new ChocoChipDecorator (new WhippedCreamDecorator(new BlackCoffee())));
+        System.out.println(doublewobble.getName());
+        System.out.println(doublewobble.getPrice());
 
-        Surgical surgical = (Surgical) registry.createItem("surgical");
-        System.out.println(surgical.getName());
-        System.out.println(surgical);
+        //===================================== Prototype =================================
+//        Registry registry = new Registry();
+//        Cosmetic cosmetic = (Cosmetic) registry.createItem("cosmetic");
+//        System.out.println(cosmetic.getName());
+//        System.out.println(cosmetic);
+//
+//        Surgical surgical = (Surgical) registry.createItem("surgical");
+//        System.out.println(surgical.getName());
+//        System.out.println(surgical);
         //===================================== Bridge =================================
 //        Color red = new Red();
 //        Color blue = new Blue();
