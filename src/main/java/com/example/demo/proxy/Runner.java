@@ -8,7 +8,7 @@ public class Runner {
 
         TwitterProxy twitterProxy = (TwitterProxy) SecurityProxy.newInstance(new TwitterProxyImpl());
         twitterProxy.printTweets(PROFILE);
-        twitterProxy.putTweet("PROFILE");
+//        twitterProxy.putTweet("PROFILE");
     }
 
 }

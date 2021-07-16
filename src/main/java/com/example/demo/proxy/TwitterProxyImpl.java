@@ -1,9 +1,13 @@
 package com.example.demo.proxy;
 
-import twitter4j.*;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TwitterProxyImpl implements TwitterProxy {
     private static Twitter twitter;
@@ -30,24 +34,35 @@ public class TwitterProxyImpl implements TwitterProxy {
 
     @Override
     public void printTweets(String profile) {
-        StringBuilder builder = new StringBuilder();
+        List<String>  tweets = null;
         try {
-            Query query = new Query(profile);
-            QueryResult result;
-            do {
-                result = twitter.search(query);
-                List<Status> tweets = result.getTweets();
-                for (Status tweet : tweets) {
-                    builder.append("@" + tweet.getUser().getScreenName() + " - " + tweet.getText() + " - " +
-                            tweet.getCreatedAt());
-                    builder.append("\n");
-                }
-            } while ((query = result.nextQuery()) != null);
-
-        } catch (TwitterException te) {
-            te.printStackTrace();
-            System.out.println("Failed to search tweets: " + te.getMessage());
+            tweets = twitter.getHomeTimeline().stream()
+                    .map(item -> item.getText())
+                    .collect(Collectors.toList());
+        } catch (TwitterException e) {
+            e.printStackTrace();
         }
-        System.out.println(builder);
+        for(String tweet : tweets){
+            System.out.println(tweet);
+        }
+//        StringBuilder builder = new StringBuilder();
+//        try {
+//            Query query = new Query(profile);
+//            QueryResult result;
+//            do {
+//                result = twitter.search(query);
+//                List<Status> tweets = result.getTweets();
+//                for (Status tweet : tweets) {
+//                    builder.append("@" + tweet.getUser().getScreenName() + " - " + tweet.getText() + " - " +
+//                            tweet.getCreatedAt());
+//                    builder.append("\n");
+//                }
+//            } while ((query = result.nextQuery()) != null);
+//
+//        } catch (TwitterException te) {
+//            te.printStackTrace();
+//            System.out.println("Failed to search tweets: " + te.getMessage());
+//        }
+//        System.out.println(builder.toString());
     }
 }
