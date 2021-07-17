@@ -15,10 +15,10 @@ public class TwitterProxyImpl implements TwitterProxy {
     static {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("")
-                .setOAuthConsumerSecret("")
-                .setOAuthAccessToken("3964549877-")
-                .setOAuthAccessTokenSecret("");
+                .setOAuthConsumerKey("yYuc6vOztOc9szJm3325Y8ZRY")
+                .setOAuthConsumerSecret("cAPqpPiDUFKbCF36yRJzWUIgRVzZtO2kZxxGqekZmzCnBAdSxD")
+                .setOAuthAccessToken("3964549877-7mpM9uHIe94TY6C78ZA877W8jZhqZVq9Exh9hFf")
+                .setOAuthAccessTokenSecret("fcuijeugGboEEDbSxQWzKEWHskhknGY8psidXjMuc6RUA");
         TwitterFactory tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
     }
@@ -26,7 +26,7 @@ public class TwitterProxyImpl implements TwitterProxy {
     @Override
     public void putTweet(String s) {
         try {
-            Status status = twitter.updateStatus("Rocking twitter4j");
+            Status status = twitter.updateStatus(s);
         } catch (TwitterException e) {
             e.printStackTrace();
         }
@@ -34,17 +34,18 @@ public class TwitterProxyImpl implements TwitterProxy {
 
     @Override
     public void printTweets(String profile) {
-        List<String>  tweets = null;
+        List<String>  tweets;
         try {
             tweets = twitter.getHomeTimeline().stream()
                     .map(item -> item.getText())
                     .collect(Collectors.toList());
+            for(String tweet : tweets){
+                System.out.println(tweet);
+            }
         } catch (TwitterException e) {
             e.printStackTrace();
         }
-        for(String tweet : tweets){
-            System.out.println(tweet);
-        }
+
 //        StringBuilder builder = new StringBuilder();
 //        try {
 //            Query query = new Query(profile);
