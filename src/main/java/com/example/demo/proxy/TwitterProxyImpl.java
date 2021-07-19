@@ -15,10 +15,10 @@ public class TwitterProxyImpl implements TwitterProxy {
     static {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("yYuc6vOztOc9szJm3325Y8ZRY")
-                .setOAuthConsumerSecret("cAPqpPiDUFKbCF36yRJzWUIgRVzZtO2kZxxGqekZmzCnBAdSxD")
-                .setOAuthAccessToken("3964549877-7mpM9uHIe94TY6C78ZA877W8jZhqZVq9Exh9hFf")
-                .setOAuthAccessTokenSecret("fcuijeugGboEEDbSxQWzKEWHskhknGY8psidXjMuc6RUA");
+                .setOAuthConsumerKey("")
+                .setOAuthConsumerSecret("")
+                .setOAuthAccessToken("3964549877-")
+                .setOAuthAccessTokenSecret("");
         TwitterFactory tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
     }
