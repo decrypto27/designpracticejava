@@ -26,7 +26,7 @@ public class TwitterProxyImpl implements TwitterProxy {
     @Override
     public void putTweet(String s) {
         try {
-            Status status = twitter.updateStatus(s);
+            Status statuses = twitter.updateStatus(s);
         } catch (TwitterException e) {
             e.printStackTrace();
         }
